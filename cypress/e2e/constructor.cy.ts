@@ -19,7 +19,9 @@ describe('Проверяем конструктор', () => {
 
   it('Добавление ингредиента в конструктор', () => {
     cy.visit(baseURL);
-    cy.get('[data-cy="ingredient-643d69a5c3f7b9001cfa093c"]').contains('Добавить').click();
+    cy.get('[data-cy="ingredient-643d69a5c3f7b9001cfa093c"]')
+      .contains('Добавить')
+      .click();
     cy.get('.constructor-element').contains('Краторная булка');
   });
 
