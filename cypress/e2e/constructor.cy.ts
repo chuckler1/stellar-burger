@@ -1,5 +1,6 @@
 describe('Проверяем конструктор', () => {
   const baseURL = 'http://localhost:4000';
+  const ingredientSelector = '[data-cy="ingredient-643d69a5c3f7b9001cfa093c"]';
   beforeEach(() => {
     cy.intercept('GET', '/api/ingredients', {
       fixture: 'ingredients.json'
@@ -19,17 +20,13 @@ describe('Проверяем конструктор', () => {
 
   it('Добавление ингредиента в конструктор', () => {
     cy.visit(baseURL);
-    cy.get('[data-cy="ingredient-643d69a5c3f7b9001cfa093c"]')
-      .contains('Добавить')
-      .click();
+    cy.get(ingredientSelector).contains('Добавить').click();
     cy.get('.constructor-element').contains('Краторная булка');
   });
 
   it('Проверяем модальное окно ингредиента', () => {
     cy.visit(baseURL);
-    cy.get('[data-cy="ingredient-643d69a5c3f7b9001cfa093c"]')
-      .contains('Краторная булка')
-      .click();
+    cy.get(ingredientSelector).contains('Краторная булка').click();
     cy.get('li').contains('Калории, ккал');
     cy.get('[data-cy="modal-close"]').click();
     cy.get('li').contains('Калории, ккал').should('not.exist');
@@ -37,9 +34,7 @@ describe('Проверяем конструктор', () => {
 
   it('Проверяем создание заказа', () => {
     cy.visit(baseURL);
-    cy.get('[data-cy="ingredient-643d69a5c3f7b9001cfa093c"]')
-      .contains('Добавить')
-      .click();
+    cy.get(ingredientSelector).contains('Добавить').click();
     cy.get('[data-cy="ingredient-643d69a5c3f7b9001cfa0941"]')
       .contains('Добавить')
       .click();
