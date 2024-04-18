@@ -31,7 +31,7 @@ describe('Проверяем конструктор', () => {
     cy.get('[data-cy="modal-close"]').click();
     cy.get('li').contains('Калории, ккал').should('not.exist');
   });
-
+  
   it('Проверяем создание заказа', () => {
     cy.visit(baseURL);
     cy.get(ingredientSelector).contains('Добавить').click();
